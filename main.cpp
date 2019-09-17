@@ -17,7 +17,7 @@ using namespace::std;
 #define RT3D_INDEX		4
 
 // Something went wrong - print error message and quit
-void exitFatalError(char *message)
+void exitFatalError(string message)
 {
     cout << message << " " << endl;
     cout << SDL_GetError();
@@ -205,7 +205,7 @@ void draw(SDL_Window * window) {
 
 void init(void) {
 	// For this simple example we'll be using the most basic of shader programs
-	initShaders("minimal.vert","minimal.frag");
+	initShaders("..\\lab1-glsl-intro-axel-ribes\\minimal.vert","..\\lab1-glsl-intro-axel-ribes\\minimal.frag");
 	// Going to create our mesh objects here
 	glGenVertexArrays(1, &meshObjects[0]);
 	//meshObjects[0] = rt3d::createColourMesh(3, vertices, colours);
