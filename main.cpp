@@ -29,17 +29,26 @@ void exitFatalError(string message)
 // Globals
 // Real programs don't use globals :-D
 // Data would normally be read from files
-GLfloat vertices[] = {	-1.0f,0.0f,0.0f,
-						0.0f,1.0f,0.0f,
-						0.0f,0.0f,0.0f, };
-GLfloat colours[] = {	1.0f, 0.0f, 0.0f,
-						0.0f, 1.0f, 0.0f,
-						0.0f, 0.0f, 1.0f };
-GLfloat vertices2[] = {	0.0f,0.0f,0.0f,
+GLfloat vertices[] = {	-1.0f,-1.0f,0.0f,
 						0.0f,-1.0f,0.0f,
-						1.0f,0.0f,0.0f };
+						-0.5f,0.0f,0.0f,
+						-0.5f,0.0f,0.0f,
+						0.5f,0.0f,0.0f,
+						0.0f,1.0f,0.0f };
+GLfloat colours[] = {	1.0f, 1.0f, 1.0f,
+						1.0f, 1.0f, 1.0f,
+						0.0f, 0.0f, 1.0f,
+						0.0f, 1.0f, 1.0f,
+						1.0f, 0.0f, 1.0f,
+						0.0f, 0.0f, 1.0f };
+GLfloat vertices2[] = {	0.0f,-1.0f,0.0f,
+						1.0f,-1.0f,0.0f,
+						0.5f,0.0f,0.0f };
+
+
+
 GLuint meshObjects[2];
-GLuint VBOarray[3];
+GLuint VBOarray[2];
 
 
 // loadFile - loads text file from file fname as a char* 
@@ -185,7 +194,7 @@ void draw(SDL_Window * window) {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glBindVertexArray(meshObjects[0]);	// Bind mesh VAO
-	glDrawArrays(GL_TRIANGLES, 0, 3);	// draw 3 vertices (one triangle)
+	glDrawArrays(GL_TRIANGLES, 0, 6);	// draw 3 vertices (one triangle)
 	
 	glBindVertexArray(meshObjects[1]);	// Bind mesh VAO
 	glDrawArrays(GL_TRIANGLES, 0, 3);	// draw 3 vertices (one triangle)
@@ -216,7 +225,7 @@ void init(void) {
 	glGenBuffers(1, &VBOarray[0]);
 	// VBO for vertex data
 	glBindBuffer(GL_ARRAY_BUFFER, VBOarray[0]);
-	glBufferData(GL_ARRAY_BUFFER, 3*3*sizeof(GLfloat), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 18*sizeof(GLfloat), vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer((GLuint)RT3D_VERTEX, 3, GL_FLOAT, GL_FALSE, 0, 0); 
 	glEnableVertexAttribArray(RT3D_VERTEX);
 	// VBO for colour data
